@@ -6,9 +6,8 @@ spec:
   to:
     kind: Service
     name: todo-api-quarkus
-    weight: 100
   port:
-    targetPort: todo-api-quarkus
+    targetPort: http
   tls:
     termination: edge
   wildcardPolicy: None
