@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: todo-api-quarkus
+  namespace: user2-project
+spec:
+  selector:
+    matchLabels:
+      app: todo-api-quarkus
+  replicas: 3
+  spec.paused: true
+  spec.template.spec.serviceAccountName: todo-api-quarkus
+  template:
+    metadata:
+      labels:
+        app: todo-api-quarkus
+    spec:
+      containers:
+        - name: todo-api-quarkus
+          image: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+          ports:
+            - containerPort: 8080
