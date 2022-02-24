@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: todo-api-quarkus
-          image: todo-api-quarkus
+          image: quay.io/johschmidtcc/todo-api-quarkus:native
           ports:
             - containerPort: 8080
               name: http
