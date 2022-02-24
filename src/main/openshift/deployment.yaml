@@ -4,12 +4,11 @@ metadata:
   name: todo-api-quarkus
   namespace: user2-project
 spec:
+  paused: true
   selector:
     matchLabels:
       app: todo-api-quarkus
-  replicas: 3
-  spec.paused: true
-  spec.template.spec.serviceAccountName: todo-api-quarkus
+  replicas: 1
   template:
     metadata:
       labels:
@@ -17,8 +16,15 @@ spec:
     spec:
       containers:
         - name: todo-api-quarkus
-          image: quay.io/johschmidtcc/todo-api-quarkus:native
+          image: todo-api-quarkus
           ports:
             - containerPort: 8080
               name: http
-              Protocol: TCP
+              protocol: TCP
+          env:
+            - name: APP_STAGE_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: todo-api-quarkus
+                  key: app.stage-name
+      serviceAccountName: todo-api-quarkus
