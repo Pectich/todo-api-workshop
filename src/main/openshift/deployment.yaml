@@ -17,6 +17,8 @@ spec:
     spec:
       containers:
         - name: todo-api-quarkus
-          image: image-registry.openshift-image-registry.svc:5000/openshift/httpd:latest
+          image: todo-api-quarkus
           ports:
             - containerPort: 8080
+              name: http
+              Protocol: TCP
